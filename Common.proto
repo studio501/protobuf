@@ -1,0 +1,27 @@
+syntax = "proto3";
+package cokprobuf;
+
+// 消息头
+message Header {
+    int32 commandId = 1; // 消息号
+}
+
+// 回复消息状态
+message  ResponseState{
+    int32 state = 1; // 状态 0为成功
+    repeated string params = 2;// 参数
+}
+
+
+//请求消息
+message Request {
+    Header header = 1;//消息头
+    bytes content = 2; // 消息体
+}
+
+//回复消息
+message Response{
+    ResponseState state = 1;//消息状态
+    Header header = 2;//消息头
+    bytes content = 3; // 消息体
+}
